@@ -1,2 +1,5 @@
-
-// whern click booard   check player  then  return  X , 0
+// $(document).ready(startGame);
+//
+//  function startGame(){
+//      // clickHandler();
+//  }
