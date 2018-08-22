@@ -1,0 +1,103 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1{
+    font-size: 3em;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+.playerinfo{
+    width: 300px;
+    height: 80vh;
+    display: flex;
+    background-color: yellow;
+}
+
+#gameboard{
+    background-color: white;
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.tile{
+    width: 30%;
+    height: 33%;
+    border: 3px solid white;
+    background-color: #21959E;
+    border-radius: 5%;
+    display: inline-block;
+    font-size: 10em;
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
+    color: white;
+    vertical-align: top;
+}
+
+.currentPlayer{
+    color: red;
+}
+
+.startGame{
+    /* display: inline-block; */
+    margin: 0 auto;
+    position: relative;
+}
+
+.dropbtn {
+    background-color: #F0624A;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #F2A092;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content .boardSize {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content div:hover {
+    background-color: #ffc1b7;
+    cursor: pointer;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    cursor: pointer;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #ff6d56;
+    cursor: pointer;
+}
+
+.reset{
+    background-color: #21959E;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+}
+
