@@ -2,11 +2,11 @@ var players = [
     {
       symbol: 'X',
       'class': 'playerX',
-      color: white
+      color: 'white'
     },
     {
       symbol: 'O',
       'class': 'playerO',
-      color: white
+      color: 'white'
     }
   ]
