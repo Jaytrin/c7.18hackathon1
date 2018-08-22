@@ -7,4 +7,14 @@ var directionVector = [
     [{upRight:{x: 1, y: 1}},{downLeft:{x: -1, y: -1}}]
 ];
 
-
+function createJSBoard(boardSizeInput){
+    var board = [];
+    for(var i = 0; i < boardSizeInput; i++){
+    var newArray = [];
+        for( var u = 0; u < boardSizeInput; u++){
+         newArray.push(' ');
+        }
+    board.push(newArray);
+    }
+    return board;
+}
