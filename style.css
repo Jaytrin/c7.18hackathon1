@@ -61,6 +61,10 @@ section{
     vertical-align: top;
 }
 
+.tile:hover{
+    cursor: pointer;
+}
+
 .currentPlayer{
     color: #F0624A;
     font-size: 3em;
@@ -89,7 +93,7 @@ section{
 }
 
 .dropbtn {
-    background-color: #8FCCAA;
+    background-color: #e7adb8;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -106,7 +110,7 @@ section{
     display: none;
     position: absolute;
     bottom: 50px;
-    background-color: #8FCCAA;
+    background-color: #e7adb8;;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -120,7 +124,7 @@ section{
 }
 
 .dropdown-content div:hover {
-    background-color: #1ca28c;
+    background-color: #e896a5;
     cursor: pointer;
 }
 
@@ -130,7 +134,7 @@ section{
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #1ca28c;
+    background-color: #e896a5;
     cursor: pointer;
 }
 
@@ -144,7 +148,7 @@ section{
 }
 
 #start{
-    background-color: #e7adb8;
+    background-color: #62c4b3;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -152,8 +156,14 @@ section{
     border-radius: 5px;
 }
 
-.reset:hover,#start:hover,.tile:hover{
+.reset:hover{
     cursor: pointer;
+    background-color: #e896a5;
+}
+
+#start:hover{
+    cursor: pointer;
+    background-color: #26ad94;
 }
 
 .hide{
