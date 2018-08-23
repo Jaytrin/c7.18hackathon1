@@ -1,5 +1,5 @@
-// $(document).ready(startGame);
-//
-//  function startGame(){
-//      // clickHandler();
-//  }
+$(document).ready(startGame);
+
+ function startGame(){
+     clickHandler();
+ }
