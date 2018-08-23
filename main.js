@@ -1,3 +1,5 @@
+var winCondition ;
+
 $(document).ready(startGame);
 
 function startGame(){
@@ -32,8 +34,8 @@ function reset() {
 }
 
 function setWinCondition(){
-    var winCondition = parseInt( $(event.currentTarget).text());
+    winCondition = null;
+    winCondition = parseInt( $(event.currentTarget).text());
     console.log('setWinCondition() : current target',$(event.currentTarget).text());
     console.log('setWinCondition() ; winCondition',winCondition);
-    return  winCondition
 }
