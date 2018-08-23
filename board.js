@@ -157,7 +157,7 @@ function draw(){
     alert('Cat\'s Game!');
 }
 
-function win() {
+function win(){
     alert('You Win!')
 }
 
