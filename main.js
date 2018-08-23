@@ -6,7 +6,7 @@ function startGame(){
 }
 
 function clickHandler(){
-    $('.tile').click(test);//put a function name in click()
+    $('.tile').click();//put a function name in click()
     $('.reset').click(reset);//put reset function in click();
     $('#start').click();//need to put a start game function here
     $('#boardSize3').click(changeBoardSize);
@@ -15,21 +15,17 @@ function clickHandler(){
     $('.winCondition').click();//put setWinCondition and parameters here
 }
 
-function test() {
-    var pressBoard= $(event.currentTarget) ;
-    playerWho = changePlayer();
-    //playerWho = '0';
-    //
-    if ( playerWho === 'X') {
-        pressBoard.text('X');
-    } else{
-        pressBoard.text('0');
-    }
-}
 
 function reset() {
-    // board clear
-    var boardTile = $(".tile") ;
-    boardTile.text('');
 
+    var boardSize = 0;
+    var boardTile = $(".tile") ;
+    // board text clear
+    boardTile.text('');
+    // board  object set to null
+    boardSize = boardTile.length;
+    console.log("#boardSize",boardSize);
+    for( var i = 1; i <= boardSize ; i++){
+         $("#value" + i ).data('symbol',null);
+    }
 }
