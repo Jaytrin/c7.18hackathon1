@@ -8,3 +8,8 @@ var directionVector = [
 ];
 
 
+//Runs a check in one direction from the directionVector to see if there are any matches.
+function checkOneDirection(){
+    ;}
+
+//Creating object to be used in DOM creation
