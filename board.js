@@ -7,7 +7,7 @@ var directionVector = [
     [{upRight:{x: 1, y: 1}},{downLeft:{x: -1, y: -1}}]
 ];
 
-function  changeBoardSize(boardSize){//boardSize should be maximum at 7 for functionality and aesthetics
+function  createHTMLBoard(boardSize){//boardSize should be maximum at 7 for functionality and aesthetics
       var strElement = null;
       var newDiv = null;
       var numWidth = 0;
