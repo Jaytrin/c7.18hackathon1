@@ -58,4 +58,23 @@ function tileObjectCreator(sizeOfBoard,currentIndex){
 }
 function changeBoardSize(){
     var boardSizeClick = parseInt( $(event.currentTarget).text());
-    createHTMLBoard(boardSizeClick);}
+    createHTMLBoard(boardSizeClick);
+    clickHandler();
+}
+
+var currentData = [];
+function getClickData(){
+    console.log('im running');
+    var currentTileClick = $(event.currentTarget);
+    var currentSymbol = $(event.currentTarget).text();
+    if(currentSymbol!==""){
+        return;
+    }
+    var data = currentTileClick.data();
+    var row = data.row;
+    var column = data.column;
+    var symbol = changePlayer();
+    currentData.push(row,column,symbol);
+    $(event.currentTarget).text(symbol);
+    return currentData;
+}
