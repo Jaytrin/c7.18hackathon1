@@ -7,13 +7,13 @@ var directionVector = [
     [{upRight:{x: 1, y: 1}},{downLeft:{x: -1, y: -1}}]
 ];
 
+//Creating object to be used in DOM creation
+
 function  createHTMLBoard(boardSize){//boardSize should be maximum at 7 for functionality and aesthetics
       var strElement = null;
       var newDiv = null;
       var numWidth = 0;
       var numHeight = 0;
-
-//Creating object to be used in DOM creation
 
     // get gameboard size %
     numWidth =   100/(boardSize+0.65) ;//to get percentage for tile width
@@ -21,11 +21,17 @@ function  createHTMLBoard(boardSize){//boardSize should be maximum at 7 for func
     //delete existing tile divs
       $("#gameboard").empty();
       for( var i= 1 ; i <= boardSize*boardSize ; i ++){
-          strElement = "<div class='tile'>" +
-                       "<div id='value" + i + "'" + "></div>" +
-                       "</div>" ;
+          // strElement = "<div class='tile'>" +
+          //              "<div id='value" + i + "'" + "></div>" +
+          //              "</div>" ;
+          //Rewriting DOM
+          strElement = $('<div>').attr('id','value' + i).addClass('tile').data(tileObjectCreator(boardSize,i));
           // append new tile
-          $("#gameboard").append(strElement);    
+        
+          $("#gameboard").append(strElement);
+
+          console.log(strElement);
+        
           strElement = null;
       }
       $(".tile").css( {"width" : numWidth +"%" , "height" : numHeight+"%" } );
@@ -42,6 +48,13 @@ function createJSBoard(boardSizeInput){
     }
     return board;
 }
+
+function tileObjectCreator(sizeOfBoard,currentIndex){
+    var tileObject = {};
+    tileObject.row = Math.ceil(currentIndex/sizeOfBoard);
+    tileObject.column = currentIndex - (sizeOfBoard*(tileObject.row - 1));
+    tileObject.symbol = null;
+    return tileObject;
 
 function changeBoardSize(){
     var boardSizeClick = parseInt( $(event.currentTarget).text());
