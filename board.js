@@ -157,8 +157,9 @@ function draw(){
     alert('Cat\'s Game!');
 }
 
-function win(){
+function win() {
     alert('You Win!')
+}
 
 function storeSymbolToArray(row,column,symbol){
     vectorArray[row-1][column-1].symbol = symbol;
