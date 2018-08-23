@@ -13,7 +13,7 @@ function clickHandler(){
     $('#boardSize3').click(changeBoardSize);
     $('#boardSize5').click(changeBoardSize);
     $('#boardSize7').click(changeBoardSize);
-    $('.winCondition').click();//put setWinCondition and parameters here
+    $('.winCondition').click(setWinCondition);//put setWinCondition and parameters here
 }
 
 
@@ -29,4 +29,11 @@ function reset() {
     for( var i = 1; i <= boardSize ; i++){
          $("#value" + i ).data('symbol',null);
     }
+}
+
+function setWinCondition(){
+    var winCondition = parseInt( $(event.currentTarget).text());
+    console.log('setWinCondition() : current target',$(event.currentTarget).text());
+    console.log('setWinCondition() ; winCondition',winCondition);
+    return  winCondition
 }
