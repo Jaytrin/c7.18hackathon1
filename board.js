@@ -7,17 +7,17 @@ var directionVector = [
     [{upRight:{x: 1, y: 1}},{downLeft:{x: -1, y: -1}}]
 ];
 
-function  changeBoardSize(boardSize){
-      var strElement = null;
-      var newDiv = null
-      var numWidth = 0;
-      var numHeight = 0;
-
 //Runs a check in one direction from the directionVector to see if there are any matches.
 function checkOneDirection(){
     ;}
 
 //Creating object to be used in DOM creation
+
+function  changeBoardSize(boardSize){
+      var strElement = null;
+      var newDiv = null
+      var numWidth = 0;
+      var numHeight = 0;
 
     // get gameboard size %
     numWidth =   (1/boardSize)*100 ;
@@ -28,11 +28,14 @@ function checkOneDirection(){
 
 
       for( var i= 1 ; i <= boardSize*boardSize ; i ++){
-          strElement = "<div class='tile'>" +
-                       "<div id='value" + i + "'" + "></div>" +
-                       "</div>" ;
+          // strElement = "<div class='tile'>" +
+          //              "<div id='value" + i + "'" + "></div>" +
+          //              "</div>" ;
+          //Rewriting DOM
+          strElement = $('<div>').attr('id','value' + i).addClass('tile').data(tileObjectCreator(boardSize,i));
           // append new tile
           $("#gameboard").append(strElement);
+
           console.log(strElement);
           strElement = null;
       }
@@ -50,4 +53,12 @@ function createJSBoard(boardSizeInput){
     board.push(newArray);
     }
     return board;
+}
+
+function tileObjectCreator(sizeOfBoard,currentIndex){
+    var tileObject = {};
+    tileObject.row = Math.ceil(currentIndex/sizeOfBoard);
+    tileObject.column = currentIndex - (sizeOfBoard*(tileObject.row - 1));
+    tileObject.symbol = null;
+    return tileObject;
 }
