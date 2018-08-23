@@ -51,12 +51,11 @@ function createJSBoard(boardSizeInput){
 
 function tileObjectCreator(sizeOfBoard,currentIndex){
     var tileObject = {};
-    tileObject.row = Math.ceil(currentIndex/sizeOfBoard);
-    tileObject.column = currentIndex - (sizeOfBoard*(tileObject.row - 1));
+    tileObject.row = Math.ceil(currentIndex / sizeOfBoard);
+    tileObject.column = currentIndex - (sizeOfBoard * (tileObject.row - 1));
     tileObject.symbol = null;
     return tileObject;
-
+}
 function changeBoardSize(){
     var boardSizeClick = parseInt( $(event.currentTarget).text());
-    createHTMLBoard(boardSizeClick);
-}
+    createHTMLBoard(boardSizeClick);}
