@@ -7,9 +7,9 @@ var directionVector = [
     [{upRight:{x: 1, y: 1}},{downLeft:{x: -1, y: -1}}]
 ];
 
-function  changeBoardSize(boardSize){
+function  createHTMLBoard(boardSize){//boardSize should be maximum at 7 for functionality and aesthetics
       var strElement = null;
-      var newDiv = null
+      var newDiv = null;
       var numWidth = 0;
       var numHeight = 0;
 
@@ -20,13 +20,11 @@ function checkOneDirection(){
 //Creating object to be used in DOM creation
 
     // get gameboard size %
-    numWidth =   (1/boardSize)*100 ;
-    numHeight =  (1/boardSize)*100 ;
-    console.log(numWidth, numHeight );
+    numWidth =   100/(boardSize+0.65) ;//to get percentage for tile width
+    numHeight =  100/(boardSize+0.65) ;//to get percentage for tile height
+    console.log(numWidth, numHeight);
     //delete existing tile divs
-      $("#gameboard").remove(".tile");
-
-
+      $("#gameboard").empty();
       for( var i= 1 ; i <= boardSize*boardSize ; i ++){
           strElement = "<div class='tile'>" +
                        "<div id='value" + i + "'" + "></div>" +
@@ -37,7 +35,6 @@ function checkOneDirection(){
           strElement = null;
       }
       $(".tile").css( {"width" : numWidth +"%" , "height" : numHeight+"%" } );
-
 }
 
 function createJSBoard(boardSizeInput){
