@@ -158,7 +158,8 @@ function draw(){
 }
 
 function win(){
-    alert('You Win!')
+    alert('You Win!');
+}
 
 function storeSymbolToArray(row,column,symbol){
     vectorArray[row-1][column-1].symbol = symbol;
