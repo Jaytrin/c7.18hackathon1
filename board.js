@@ -29,8 +29,6 @@ function  createHTMLBoard(boardSize){//boardSize should be maximum at 7 for func
           // append new tile
         
           $("#gameboard").append(strElement);
-
-          console.log(strElement);
         
           strElement = null;
       }
@@ -57,9 +55,21 @@ function tileObjectCreator(sizeOfBoard,currentIndex){
     return tileObject;
 }
 function changeBoardSize(){
+    $('#winCondition3').removeClass('hide');
+    $('#winCondition5').removeClass('hide');
+    $('#winCondition7').removeClass('hide');
     var boardSizeClick = parseInt( $(event.currentTarget).text());
     createHTMLBoard(boardSizeClick);
     clickHandler();
+    displayWinCondition();
+    function displayWinCondition(){
+        if(boardSizeClick===3){
+            $('#winCondition5').addClass('hide');
+            $('#winCondition7').addClass('hide');
+        } else if(boardSizeClick===5){
+            $('#winCondition7').addClass('hide');
+        }
+    }
 }
 
 var currentData = [];
@@ -79,3 +89,4 @@ function getClickData(){
     $(event.currentTarget).text(symbol);
     return currentData;
 }
+
