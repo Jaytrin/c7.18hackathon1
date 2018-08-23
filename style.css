@@ -61,7 +61,14 @@ section{
 }
 
 .currentPlayer{
-    color: red;
+    color: #F0624A;
+    font-size: 3em;
+    font-family: 'Montserrat', sans-serif;  
+    font-style: unset;
+}
+
+.otherPlayer{
+    color: #d3d3d3;
 }
 
 .button-container > *{
