@@ -9,8 +9,8 @@ function startGame(){
 }
 
 function clickHandler(){
-    $('.tile').click(getClickData);//put a function name in click()
-    $('.reset').click(reset);//put reset function in click();
+    // $('.tile').click(getClickData);//put a function name in click()
+    // $('.reset').click(reset);//put reset function in click();
     $('#start').click(startNewGame);
     $('#boardSize3').click(changeBoardSize);
     $('#boardSize5').click(changeBoardSize);
@@ -51,7 +51,8 @@ function setWinCondition(){
     console.log('setWinCondition() : current target',$(event.currentTarget));
     console.log('setWinCondition() ; winCondition',winCondition);
 }
-
+// player start game after selecting board size and win condition
 function startNewGame(){
-
+    $('.tile').click(getClickData);//put a function name in click()
+    $('.reset').click(reset);//put reset function in click();
 }

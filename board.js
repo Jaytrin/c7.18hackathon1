@@ -27,6 +27,7 @@ function  createHTMLBoard(boardSize){//boardSize should be maximum at 7 for func
           strElement = null;
       }
       $(".tile").css( {"width" : numWidth +"%" , "height" : numHeight+"%" } );
+      responsiveText();
       setLimitOnWinConditions(boardSize);//limit user choice on win conditions based on the board size
 }
 
@@ -54,7 +55,6 @@ function changeBoardSize(){
     $('#winCondition7').removeClass('hide');
     var boardSizeClick = parseInt( $(event.currentTarget).text());
     createHTMLBoard(boardSizeClick);
-    responsiveText();
     clickHandler();
 }
 
