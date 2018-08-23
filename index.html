@@ -14,43 +14,41 @@
 </head>
 <body>
     <div class="title">
-            <h1>TIC TAC TOE</h1>
-    </div>
-    <div class="startGame">
-            <div class="dropdown">
-                    <button class="dropbtn" id="boardSize">Board Size</button>
-                    <div class="dropdown-content boardSize">
-                        <div id="boardSize3">3</div>
-                        <div id="boardSize5">5</div>
-                        <div id="boardSize7">7</div>
-                    </div>
-                    </div>
-            <div class="dropdown">
-                    <button class="dropbtn" id="winCondition">Win Condition</button>
-                    <div class="dropdown-content winCondition">
-                        <div id="winCondition3">3 Matches to Win</div>
-                        <div id="winCondition5">5 Matches to Win</div>
-                        <div id="winCondition7">7 Matches to Win</div>
-                    </div>
-    </div>
-    <div class="playerInfo">
+        <h1>TIC TAC TOE</h1>
     </div>
     <section>
         <div id="player1">
                     Player 1
-                </div>
-        
-            <button class="reset">Reset</button>
-            <button id="start">Start</button>
+        </div>   
+        <div class="gameArea">
+            <div id="gameboard">   
+            </div>
         </div>
         <div id="player2">
                 Player 2
-            </div>  
-        <div id="gameboard">   
         </div>
-        
     </section>
-
+    </div> 
+    <div class="startGame">
+        <div class="button-container">
+            <div class="dropdown">
+                <button class="dropbtn" id="boardSize">Board Size</button>
+                <div class="dropdown-content boardSize">
+                    <div id="boardSize3">3</div>
+                    <div id="boardSize5">5</div>
+                    <div id="boardSize7">7</div>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn" id="winCondition">Win Condition</button>
+                <div class="dropdown-content winCondition">
+                    <div id="winCondition3">3 Matches to Win</div>
+                    <div id="winCondition5">5 Matches to Win</div>
+                    <div id="winCondition7">7 Matches to Win</div>
+                </div>
+                <button class="reset">Reset</button>
+                <button id="start">Start</button>
+        </div>
     </div>
 </body>
 </html>
