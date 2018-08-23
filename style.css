@@ -2,6 +2,12 @@ body{
     font-family: 'Montserrat', sans-serif;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+.title{
+    /* width: 5vh; */
 }
 
 h1{
@@ -10,47 +16,80 @@ h1{
     text-align: center;
 }
 
-.playerinfo{
-    width: 300px;
-    height: 80vh;
+section{
+    width: 100%;
+    height: 75vh;
     display: flex;
-    background-color: yellow;
+    justify-content: space-around;
+}
+
+.gameArea{
+    width: 65%;
+    display: inline-block;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 #gameboard{
     background-color: white;
     width: 500px;
     height: 500px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding: 0 10px;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-evenly;
+}
+
+#player1,#player2{
+    width: 17%;
+    text-align: center;
+    font-size: 2em;
 }
 
 .tile{
     width:  30%;
     height: 33%;
     border: 3px solid white;
-    background-color: #21959E;
+    background-color: #82718d;
     border-radius: 5%;
     display: inline-block;
     font-size: 18vh;
     font-family: 'Comfortaa', cursive;
     text-align: center;
-    color: white;
+    color: #e7adb8;
     vertical-align: top;
 }
 
 .currentPlayer{
-    color: red;
+    color: #F0624A;
+    font-size: 3em;
+    font-family: 'Montserrat', sans-serif;  
+    font-style: unset;
+}
+
+.otherPlayer{
+    color: #d3d3d3;
+}
+
+.button-container > *{
+    display: inline-block;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    /* width: 40%;
+    height: 15%; */
+
 }
 
 .startGame{
-    /* display: inline-block; */
-    margin: 0 auto;
-    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .dropbtn {
-    background-color: #F0624A;
+    background-color: #8FCCAA;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -66,7 +105,8 @@ h1{
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #F2A092;
+    bottom: 50px;
+    background-color: #8FCCAA;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -80,7 +120,7 @@ h1{
 }
 
 .dropdown-content div:hover {
-    background-color: #ffc1b7;
+    background-color: #1ca28c;
     cursor: pointer;
 }
 
@@ -90,17 +130,30 @@ h1{
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #ff6d56;
+    background-color: #1ca28c;
     cursor: pointer;
 }
 
 .reset{
-    background-color: #21959E;
+    background-color: #e7adb8;
     color: white;
     padding: 16px;
     font-size: 16px;
     border: none;
     border-radius: 5px;
+}
+
+#start{
+    background-color: #e7adb8;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+}
+
+.reset:hover,#start:hover,.tile:hover{
+    cursor: pointer;
 }
 
 .hide{

@@ -75,6 +75,8 @@ var currentData = [];//might not need
 function getClickData(){
     currentData = [];
     console.log('im running');
+    var audio = new Audio('sound.flac');
+    audio.play();
     var currentTileClick = $(event.currentTarget);
     var currentSymbol = $(event.currentTarget).text();
 
