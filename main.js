@@ -3,6 +3,7 @@ $(document).ready(startGame);
 function startGame(){
     console.log('StartGame: Im running yo')
     clickHandler();
+    createHTMLBoard(3);
 }
 
 function clickHandler(){
