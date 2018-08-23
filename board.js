@@ -158,7 +158,7 @@ function draw(){
 }
 
 function win(){
-    alert('You Win!')
+    alert('You Win!');
 }
 
 function storeSymbolToArray(row,column,symbol){
