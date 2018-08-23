@@ -7,31 +7,34 @@ var directionVector = [
     [{upRight:{x: 1, y: 1}},{downLeft:{x: -1, y: -1}}]
 ];
 
-function  changeBoardSize(boardSize){
+//Creating object to be used in DOM creation
+
+function  createHTMLBoard(boardSize){//boardSize should be maximum at 7 for functionality and aesthetics
       var strElement = null;
-      var newDiv = null
+      var newDiv = null;
       var numWidth = 0;
       var numHeight = 0;
 
     // get gameboard size %
-    numWidth =   (1/boardSize)*100 ;
-    numHeight =  (1/boardSize)*100 ;
-    console.log(numWidth, numHeight );
+    numWidth =   100/(boardSize+0.65) ;//to get percentage for tile width
+    numHeight =  100/(boardSize+0.65) ;//to get percentage for tile height
     //delete existing tile divs
-      $("#gameboard").remove(".tile");
-
-
+      $("#gameboard").empty();
       for( var i= 1 ; i <= boardSize*boardSize ; i ++){
-          strElement = "<div class='tile'>" +
-                       "<div id='value" + i + "'" + "></div>" +
-                       "</div>" ;
+          // strElement = "<div class='tile'>" +
+          //              "<div id='value" + i + "'" + "></div>" +
+          //              "</div>" ;
+          //Rewriting DOM
+          strElement = $('<div>').attr('id','value' + i).addClass('tile').data(tileObjectCreator(boardSize,i));
           // append new tile
+        
           $("#gameboard").append(strElement);
+
           console.log(strElement);
+        
           strElement = null;
       }
       $(".tile").css( {"width" : numWidth +"%" , "height" : numHeight+"%" } );
-
 }
 
 function createJSBoard(boardSizeInput){
@@ -45,3 +48,14 @@ function createJSBoard(boardSizeInput){
     }
     return board;
 }
+
+function tileObjectCreator(sizeOfBoard,currentIndex){
+    var tileObject = {};
+    tileObject.row = Math.ceil(currentIndex / sizeOfBoard);
+    tileObject.column = currentIndex - (sizeOfBoard * (tileObject.row - 1));
+    tileObject.symbol = null;
+    return tileObject;
+}
+function changeBoardSize(){
+    var boardSizeClick = parseInt( $(event.currentTarget).text());
+    createHTMLBoard(boardSizeClick);}

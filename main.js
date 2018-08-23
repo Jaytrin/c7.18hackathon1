@@ -1,6 +1,7 @@
 $(document).ready(startGame);
 
 function startGame(){
+    console.log('StartGame: Im running yo')
     clickHandler();
 }
 
@@ -8,7 +9,9 @@ function clickHandler(){
     $('.tile').click(test);//put a function name in click()
     $('.reset').click(reset);//put reset function in click();
     $('#start').click();//need to put a start game function here
-    $('.boardSize').click();//changeBoardSize and parameters go in here
+    $('#boardSize3').click(changeBoardSize);
+    $('#boardSize5').click(changeBoardSize);
+    $('#boardSize7').click(changeBoardSize);
     $('.winCondition').click();//put setWinCondition and parameters here
 }
 
