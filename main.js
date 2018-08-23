@@ -24,6 +24,9 @@ function clickHandler(){
 function reset() {
 
     var boardSize = 0;
+    var vectorX = 0;
+    var vectorY = 0;
+
     var boardTile = $(".tile") ;
     // board text clear
     boardTile.text('');
@@ -32,6 +35,13 @@ function reset() {
     console.log("#boardSize",boardSize);
     for( var i = 1; i <= boardSize ; i++){
          $("#value" + i ).data('symbol',null);
+    }
+    // clear   vectorArray.symbol
+    for( vectorX = 0 ; vectorX < vectorArray.length ; vectorX ++){
+        for( vectorY = 0 ; vectorY < vectorArray.length ; vectorY ++) {
+            console.log(vectorArray[vectorX][vectorY].symbol);
+            vectorArray[vectorX][vectorY].symbol = null;
+        }
     }
 }
 
