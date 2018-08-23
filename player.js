@@ -1,19 +1,19 @@
 var players = [
     {
-      symbol: 'X',
-      'class': 'playerX',
+      symbol: 'O',
+      'class': 'playerO',
       color: 'white'
     },
     {
-      symbol: 'O',
-      'class': 'playerO',
+      symbol: 'X',
+      'class': 'playerX',
       color: 'white'
     }
   ]
 
 var currentPlayer = 0;
 
-function changePlayer() {
+function changePlayer(){
     currentPlayer = 1 - currentPlayer;
-    return  players[currentPlayer].symbol;
+    return currentPlayer;
 }
