@@ -24,10 +24,10 @@ function  createHTMLBoard(boardSize){//boardSize should be maximum at 7 for func
           strElement = $('<div>').attr('id','value' + i).addClass('tile').data(tileObjectCreator(boardSize,i));
           // append new tile
           $("#gameboard").append(strElement);
-          console.log(strElement);
           strElement = null;
       }
       $(".tile").css( {"width" : numWidth +"%" , "height" : numHeight+"%" } );
+      setLimitOnWinConditions(boardSize);//limit user choice on win conditions based on the board size
 }
 
 function createJSBoard(boardSizeInput){
@@ -50,13 +50,25 @@ function tileObjectCreator(sizeOfBoard,currentIndex){
     return tileObject;
 }
 function changeBoardSize(){
+    $('#winCondition5').removeClass('hide');
+    $('#winCondition7').removeClass('hide');
     var boardSizeClick = parseInt( $(event.currentTarget).text());
     createHTMLBoard(boardSizeClick);
     clickHandler();
 }
 
+function setLimitOnWinConditions(boardSize){
+    if(boardSize===3){
+        $('#winCondition5').addClass('hide');
+        $('#winCondition7').addClass('hide');
+    } else if(boardSize===5){
+        $('#winCondition7').addClass('hide');
+    }
+}
+
 var currentData = [];
 function getClickData(){
+    currentData = [];
     console.log('im running');
     var currentTileClick = $(event.currentTarget);
     var currentSymbol = $(event.currentTarget).text();
@@ -70,8 +82,10 @@ function getClickData(){
     var symbol = changePlayer();
     currentData.push(row,column,symbol);
     $(event.currentTarget).text(symbol);
+    storeSymbolToArray(row,column,symbol);
     return currentData;
 }
+
 
 //Creates array to store objects containing the symbol.
 //Need to tie the clicked object to the vectorArray
@@ -145,4 +159,7 @@ function draw(){
 
 function win(){
     alert('You Win!')
+
+function storeSymbolToArray(row,column,symbol){
+    vectorArray[row-1][column-1].symbol = symbol;
 }

@@ -103,3 +103,6 @@ h1{
     border-radius: 5px;
 }
 
+.hide{
+    display: none;
+}
