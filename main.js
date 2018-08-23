@@ -16,7 +16,9 @@ function clickHandler(){
     $('#boardSize3').click(changeBoardSize);
     $('#boardSize5').click(changeBoardSize);
     $('#boardSize7').click(changeBoardSize);
-    $('.winCondition').click(setWinCondition);//put setWinCondition and parameters here
+    $('#winCondition3').click(setWinCondition);
+    $('#winCondition5').click(setWinCondition);
+    $('#winCondition7').click(setWinCondition);
 }
 
 
@@ -37,6 +39,6 @@ function reset() {
 function setWinCondition(){
     winCondition = null;
     winCondition = parseInt( $(event.currentTarget).text());
-    console.log('setWinCondition() : current target',$(event.currentTarget).text());
+    console.log('setWinCondition() : current target',$(event.currentTarget));
     console.log('setWinCondition() ; winCondition',winCondition);
 }
