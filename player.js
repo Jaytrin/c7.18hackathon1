@@ -10,3 +10,10 @@ var players = [
       color: 'white'
     }
   ]
+
+var currentPlayer = 0;
+
+function changePlayer() {
+    currentPlayer = 1 - currentPlayer;
+    return  players[currentPlayer].symbol;
+}
