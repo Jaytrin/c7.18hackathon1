@@ -71,6 +71,7 @@ function getClickData(){
         return;
     }
     var data = currentTileClick.data();
+    console.log(data);
     var row = data.row;
     var column = data.column;
     var symbol = changePlayer();
