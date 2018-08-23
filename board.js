@@ -54,6 +54,7 @@ function changeBoardSize(){
     $('#winCondition7').removeClass('hide');
     var boardSizeClick = parseInt( $(event.currentTarget).text());
     createHTMLBoard(boardSizeClick);
+    responsiveText();
     clickHandler();
 }
 
@@ -163,4 +164,16 @@ function win(){
 
 function storeSymbolToArray(row,column,symbol){
     vectorArray[row-1][column-1].symbol = symbol;
+}
+//change X & 0 size based on board size
+function  responsiveText() {
+    var tile = $('.tile');
+    var currentfontSize =  tile.css('font-size');
+    var currentWidth = tile.width();
+    var currentHeight = tile.height();
+
+    var constraint = 5 * (currentWidth /100) ;
+    // console.log('responsiveText', constraint)
+    tile.css('font-size', constraint + 'em');
+
 }

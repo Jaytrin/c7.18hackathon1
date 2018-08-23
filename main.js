@@ -11,7 +11,7 @@ function startGame(){
 function clickHandler(){
     $('.tile').click(getClickData);//put a function name in click()
     $('.reset').click(reset);//put reset function in click();
-    $('#start').click();//need to put a start game function here
+    $('#start').click(startNewGame);
     $('#boardSize3').click(changeBoardSize);
     $('#boardSize5').click(changeBoardSize);
     $('#boardSize7').click(changeBoardSize);
@@ -39,7 +39,7 @@ function reset() {
     // clear   vectorArray.symbol
     for( vectorX = 0 ; vectorX < vectorArray.length ; vectorX ++){
         for( vectorY = 0 ; vectorY < vectorArray.length ; vectorY ++) {
-            console.log(vectorArray[vectorX][vectorY].symbol);
+            // console.log(vectorArray[vectorX][vectorY].symbol);
             vectorArray[vectorX][vectorY].symbol = null;
         }
     }
@@ -50,4 +50,8 @@ function setWinCondition(){
     winCondition = parseInt( $(event.currentTarget).text());
     console.log('setWinCondition() : current target',$(event.currentTarget));
     console.log('setWinCondition() ; winCondition',winCondition);
+}
+
+function startNewGame(){
+
 }
