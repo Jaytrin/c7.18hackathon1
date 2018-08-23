@@ -7,8 +7,7 @@ var directionVector = [
     [{upRight:{x: 1, y: 1}},{downLeft:{x: -1, y: -1}}]
 ];
 
-
-function  changeBoardSize( boardSize){
+function  changeBoardSize(boardSize){
       var strElement = null;
       var newDiv = null
       var numWidth = 0;
@@ -18,7 +17,7 @@ function  changeBoardSize( boardSize){
     numWidth =   (1/boardSize)*100 ;
     numHeight =  (1/boardSize)*100 ;
     console.log(numWidth, numHeight );
-    // deletd  exigst tile div
+    //delete existing tile divs
       $("#gameboard").remove(".tile");
 
 
@@ -26,7 +25,7 @@ function  changeBoardSize( boardSize){
           strElement = "<div class='tile'>" +
                        "<div id='value" + i + "'" + "></div>" +
                        "</div>" ;
-          // append  new tile
+          // append new tile
           $("#gameboard").append(strElement);
           console.log(strElement);
           strElement = null;
@@ -35,6 +34,14 @@ function  changeBoardSize( boardSize){
 
 }
 
-
-
-git
+function createJSBoard(boardSizeInput){
+    var board = [];
+    for(var i = 0; i < boardSizeInput; i++){
+    var newArray = [];
+        for( var u = 0; u < boardSizeInput; u++){
+         newArray.push(' ');
+        }
+    board.push(newArray);
+    }
+    return board;
+}
