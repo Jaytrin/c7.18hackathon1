@@ -13,6 +13,12 @@ function  changeBoardSize(boardSize){
       var numWidth = 0;
       var numHeight = 0;
 
+//Runs a check in one direction from the directionVector to see if there are any matches.
+function checkOneDirection(){
+    ;}
+
+//Creating object to be used in DOM creation
+
     // get gameboard size %
     numWidth =   (1/boardSize)*100 ;
     numHeight =  (1/boardSize)*100 ;
