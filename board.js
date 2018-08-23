@@ -61,16 +61,14 @@ function changeBoardSize(){
     var boardSizeClick = parseInt( $(event.currentTarget).text());
     createHTMLBoard(boardSizeClick);
     clickHandler();
-    displayWinCondition();
-    function displayWinCondition(){
-        if(boardSizeClick===3){
-            $('#winCondition5').addClass('hide');
-            $('#winCondition7').addClass('hide');
-        } else if(boardSizeClick===5){
-            $('#winCondition7').addClass('hide');
-        }
+    if(boardSizeClick===3){
+        $('#winCondition5').addClass('hide');
+        $('#winCondition7').addClass('hide');
+    } else if(boardSizeClick===5){
+        $('#winCondition7').addClass('hide');
     }
 }
+
 
 var currentData = [];
 function getClickData(){
