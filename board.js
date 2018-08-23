@@ -66,9 +66,10 @@ function setLimitOnWinConditions(boardSize){
     }
 }
 
-var currentData = [];
+
 function getClickData(){
     console.log('im running');
+    var currentData = [];
     var currentTileClick = $(event.currentTarget);
     var currentSymbol = $(event.currentTarget).text();
     if(currentSymbol!==""){
@@ -81,6 +82,7 @@ function getClickData(){
     var symbol = changePlayer();
     currentData.push(row,column,symbol);
     $(event.currentTarget).text(symbol);
+    storeSymbolToArray(row,column,symbol);
     return currentData;
 }
 
@@ -105,8 +107,12 @@ function createVectorArray(boardSize){
     return vectorArray;
 }
 
-console.log(createVectorArray(3));
+// console.log(createVectorArray(3));
 
 function checkForMatch(rowFromClicked, columnFromClicked, symbolFromClicked){
     
+}
+
+function storeSymbolToArray(row,column,symbol){
+    vectorArray[row-1][column-1].symbol = symbol;
 }
