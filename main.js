@@ -4,7 +4,6 @@ function startGame(){
     console.log('StartGame: Im running yo');
     createHTMLBoard(3);
     clickHandler();
-    
 }
 
 function clickHandler(){
