@@ -66,10 +66,10 @@ function setLimitOnWinConditions(boardSize){
     }
 }
 
-
+var currentData = [];
 function getClickData(){
+    currentData = [];
     console.log('im running');
-    var currentData = [];
     var currentTileClick = $(event.currentTarget);
     var currentSymbol = $(event.currentTarget).text();
     if(currentSymbol!==""){
