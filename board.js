@@ -21,15 +21,9 @@ function  createHTMLBoard(boardSize){//boardSize should be maximum at 7 for func
     //delete existing tile divs
       $("#gameboard").empty();
       for( var i= 1 ; i <= boardSize*boardSize ; i ++){
-          // strElement = "<div class='tile'>" +
-          //              "<div id='value" + i + "'" + "></div>" +
-          //              "</div>" ;
-          //Rewriting DOM
           strElement = $('<div>').attr('id','value' + i).addClass('tile').data(tileObjectCreator(boardSize,i));
           // append new tile
-        
           $("#gameboard").append(strElement);
-        
           strElement = null;
       }
       $(".tile").css( {"width" : numWidth +"%" , "height" : numHeight+"%" } );
@@ -91,4 +85,28 @@ function getClickData(){
 }
 
 
+//Creates array to store objects containing the symbol.
+//Need to tie the clicked object to the vectorArray
+//vectorArray[rowFromClicked][columnFromClicked].symbol to check.
 
+var vectorArray = [];
+function createVectorArray(boardSize){
+    for( var i = 1 ; i <= boardSize; i++){
+        var innerArray = [];
+        for(var u = 1; u <= boardSize; u++){
+            var tileArrayObject = {};
+            tileArrayObject.row = i;
+            tileArrayObject.column = u;
+            tileArrayObject.symbol = null;
+            innerArray.push(tileArrayObject);
+        }
+        vectorArray.push(innerArray);
+    }
+    return vectorArray;
+}
+
+console.log(createVectorArray(3));
+
+function checkForMatch(rowFromClicked, columnFromClicked, symbolFromClicked){
+    
+}
