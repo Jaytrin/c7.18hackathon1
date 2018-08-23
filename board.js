@@ -13,16 +13,11 @@ function  createHTMLBoard(boardSize){//boardSize should be maximum at 7 for func
       var numWidth = 0;
       var numHeight = 0;
 
-//Runs a check in one direction from the directionVector to see if there are any matches.
-function checkOneDirection(){
-    ;}
-
 //Creating object to be used in DOM creation
 
     // get gameboard size %
     numWidth =   100/(boardSize+0.65) ;//to get percentage for tile width
     numHeight =  100/(boardSize+0.65) ;//to get percentage for tile height
-    console.log(numWidth, numHeight);
     //delete existing tile divs
       $("#gameboard").empty();
       for( var i= 1 ; i <= boardSize*boardSize ; i ++){
@@ -30,8 +25,7 @@ function checkOneDirection(){
                        "<div id='value" + i + "'" + "></div>" +
                        "</div>" ;
           // append new tile
-          $("#gameboard").append(strElement);
-          console.log(strElement);
+          $("#gameboard").append(strElement);    
           strElement = null;
       }
       $(".tile").css( {"width" : numWidth +"%" , "height" : numHeight+"%" } );
@@ -47,4 +41,9 @@ function createJSBoard(boardSizeInput){
     board.push(newArray);
     }
     return board;
+}
+
+function changeBoardSize(){
+    var boardSizeClick = parseInt( $(event.currentTarget).text());
+    createHTMLBoard(boardSizeClick);
 }
