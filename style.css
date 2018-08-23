@@ -14,6 +14,7 @@ h1{
     font-size: 3em;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
+    color: #e7adb8;
 }
 
 section{
@@ -66,7 +67,7 @@ section{
 }
 
 .currentPlayer{
-    color: #F0624A;
+    color: #66c3b3;
     font-size: 3em;
     font-family: 'Montserrat', sans-serif;  
     font-style: unset;
