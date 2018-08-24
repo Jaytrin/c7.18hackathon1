@@ -39,7 +39,9 @@ section{
     padding: 0 10px;
     display: flex;
     flex-flow: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: flex-start;
 }
 
 .player1,.player2{
