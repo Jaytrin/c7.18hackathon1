@@ -10,9 +10,9 @@ function startGame(){
 }
 
 function clickHandler(){
-    $('.tile').click(getClickData);//put a function name in click()
-    $('.reset').click(reset);//put reset function in click();
-    $('#start').click();//need to put a start game function here
+    // $('.tile').click(getClickData);//put a function name in click()
+    // $('.reset').click(reset);//put reset function in click();
+    $('#start').click(startNewGame);
     $('#boardSize3').click(changeBoardSize);
     $('#boardSize5').click(changeBoardSize);
     $('#boardSize7').click(changeBoardSize);
@@ -51,4 +51,10 @@ function setWinCondition(){
     winCondition = parseInt( $(event.currentTarget).text());
     console.log('setWinCondition() : current target',$(event.currentTarget));
     console.log('setWinCondition() ; winCondition',winCondition);
+}
+
+// player start game after selecting board size and win condition
+function startNewGame(){
+    $('.tile').click(getClickData);//put a function name in click()
+    $('.reset').click(reset);//put reset function in click();
 }
