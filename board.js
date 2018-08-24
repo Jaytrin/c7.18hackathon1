@@ -196,10 +196,14 @@ function checkForDraw(){
 
 function draw(){
     alert('Cat\'s Game!');
+    var audio = new Audio('draw.wav');
+    audio.play();
 }
 
 function win(){
     alert('You Win!')
+    var audio = new Audio('win.flac');
+    audio.play();
 }
 
 function storeSymbolToArray(row,column,symbol){
