@@ -10,7 +10,7 @@ var directionVector = [
 
 //Creating object to be used in DOM creation
 
-function  createHTMLBoard(boardSize){//boardSize should be maximum at 7 for functionality and aesthetics
+function createHTMLBoard(boardSize){//boardSize should be maximum at 7 for functionality and aesthetics
       var strElement = null;
       var newDiv = null;
       var numWidth = 0;
@@ -21,16 +21,25 @@ function  createHTMLBoard(boardSize){//boardSize should be maximum at 7 for func
     numHeight =  100/(boardSize+0.65) ;//to get percentage for tile height
     //delete existing tile divs
       $("#gameboard").empty();
-      for( var i= 0 ; i < boardSize*boardSize ; i ++){
-          strElement = $('<div>').attr('id','value' + i).addClass('tile').data(tileObjectCreator(boardSize,i));
-          // append new tile
-          $("#gameboard").append(strElement);
-          strElement = null;
+      for(var i = 0; i < boardSize; i++){
+          for(var u = 0; u < boardSize; u++){
+              strElement = $('<div>').attr({'row': i,'column': u}).addClass('tile');
+              $('#gameboard').append(strElement);
+          }
       }
-      $(".tile").css( {"width" : numWidth +"%" , "height" : numHeight+"%" } );
-      setLimitOnWinConditions(boardSize);//limit user choice on win conditions based on the board size
+
+        setLimitOnWinConditions(boardSize);//limit user choice on win conditions based on the board size
         createjsArray(boardSize);
-      winCondition = boardSize;
+        winCondition = boardSize;
+        $(".tile").css( {"width" : numWidth +"%" , "height" : numHeight+"%" } );
+      // for( var i= 0 ; i < boardSize * boardSize ; i ++){
+      //     strElement = $('<div>').attr('id':'value' + i).addClass('tile').data(tileObjectCreator(boardSize,i));
+      //     // append new tile
+      //     $("#gameboard").append(strElement);
+      //     strElement = null;
+      // }
+      // $(".tile").css( {"width" : numWidth +"%" , "height" : numHeight+"%" } );
+
 }
 //
 // function createJSBoard(boardSizeInput){
@@ -74,24 +83,23 @@ function setLimitOnWinConditions(boardSize){
 var currentData = [];//might not need
 function getClickData(){
     currentData = [];
-    console.log('im running');
+    console.log('click running');
     var audio = new Audio('sound.flac');
     audio.play();
     var currentTileClick = $(event.currentTarget);
     var currentSymbol = $(event.currentTarget).text();
-
     if(currentSymbol!==""){
         return;
     }
-    var data = currentTileClick.data();
-    console.log(data);
-    var row = data.row;
-    var column = data.column;
+    var row = parseInt(currentTileClick.attr('row'));
+    var column = parseInt(currentTileClick.attr('column'));
     var symbol = players[currentPlayer].symbol;//check this
+    console.log('symbol',symbol);
     currentData.push(row,column,symbol);
     $(event.currentTarget).text(symbol);
-    storeSymbolToArray(row,column,symbol);
-    $(event.currentTarget).data('symbol',symbol);
+    // storeSymbolToArray(row,column,symbol);
+    // $(event.currentTarget).data('symbol',symbol);
+    jsArray[row][column].symbol = symbol;
     checkForMatch(row,column,symbol);
     changePlayer();
     return currentData;
@@ -104,6 +112,7 @@ function getClickData(){
 
 var jsArray = [];
 function createjsArray(boardSize){
+    jsArray =[];
     for(var i = 0 ; i < boardSize; i++){
         var innerArray = [];
         for(var u = 0; u < boardSize; u++){
@@ -118,44 +127,71 @@ function createjsArray(boardSize){
     return jsArray;
 }
 // var newPosition = {newRow: null, newColumn: null};
+
+function returnPositionChange(newRowPosition,newColumnPosition){
+    var result = null;
+    if(newRowPosition < 0 || newRowPosition >= jsArray.length || newColumnPosition < 0 || newColumnPosition >= jsArray.length){
+       result = false;
+    } else {result = jsArray[newRowPosition][newColumnPosition];}
+    return result
+}
+
+
 var checkArray = [];
 
-function checkForMatch(rowFromClicked, columnFromClicked, symbolFromClicked){
+function checkForMatch(rowClicked, columnClicked, symbolClicked) {
+    console.log('check for match running');
     var matchCounter = 1;
-    var clickedTile = jsArray[rowFromClicked][columnFromClicked];
+    var clickedTile = jsArray[rowClicked][columnClicked];
 
-    for(var i = 0; i < directionVector.length; i++){
-    var firstRowChange = directionVector[i][0].row + rowFromClicked; //gives the new row
-    var firstColumnChange = directionVector[i][0].column + columnFromClicked; //give the new column
-    var secondRowChange = directionVector[i][1].row + rowFromClicked;
-    var secondColumnChange = directionVector[i][1].column + columnFromClicked;
+    for (var i = 0; i < directionVector.length; i++) {
+        var firstRowChange = directionVector[i][0].row + rowClicked; //gives us the new row of the first direction change
+        var firstColumnChange = directionVector[i][0].column + columnClicked; //gives us the new column of the first direction change
 
+        var secondRowChange = directionVector[i][1].row + rowClicked;// gives us the new row of the second direction change
+        var secondColumnChange = directionVector[i][1].column + columnClicked;//gives us the new column of the second direction change
 
-    var newCoodinate1 = getSymbolAtCoordinates(firstRowChange,firstColumnChange);
-    var newCoordinate2 = getSymbolAtCoordinates(secondRowChange,secondColumnChange);
+        var newCoodinate1 = returnPositionChange(firstRowChange,firstColumnChange);
+        var newCoordinate2 = returnPositionChange(secondRowChange,secondColumnChange);
 
-    while(newCoodinate1 === symbolFromClicked){
-        console.log('First While Loop');
-        matchCounter++;
-        firstRowChange = firstRowChange + directionVector[i][0].row;
-        firstColumnChange = firstColumnChange + directionVector[i][0].column;
-        newCoodinate1 = getSymbolAtCoordinates(firstRowChange,firstColumnChange);
+        while (newCoodinate1.symbol === symbolClicked && newCoodinate1 !== clickedTile) {
+            console.log('First While Loop');
+            matchCounter++;
+            firstRowChange = directionVector[i][0].row + firstRowChange;
+            firstColumnChange = directionVector[i][0].column + firstColumnChange;
+            if(returnPositionChange(firstRowChange,firstColumnChange) !== newCoodinate1){
+                newCoodinate1 = returnPositionChange(firstRowChange,firstColumnChange);
+            } else {newCoodinate1 = false};
+        }
+
+        while (newCoordinate2.symbol === symbolClicked && newCoordinate2 !== clickedTile) {
+            console.log('First While Loop');
+            matchCounter++;
+            secondRowChange = directionVector[i][1].row + secondRowChange;
+            secondColumnChange = directionVector[i][1].column + secondColumnChange;
+            if(returnPositionChange(secondRowChange,secondColumnChange) !== newCoordinate2){
+                newCoordinate2 = returnPositionChange(secondRowChange,secondColumnChange);
+            } else {newCoordinate2 = false};
+        }
+
+        if (matchCounter === winCondition) {
+            setTimeout(win,2000);
+            break;
+        } else {
+            setTimeout(checkForDraw,2000);
+        }
     }
+}
+    // function getCoordinates(x, y){
+    //     if(x >= jsArray.length || x < 0 || y >= jsArray.length || y<0){
+    //         return false;
+    //     }
+    //     return jsArray[x][y];
+    // }
 
-    while(newCoodinate2 === symbolFromClicked){
-        console.log('Second While Loop');
-        matchCounter++;
-        secondRowChange = secondRowChange + directionVector[i][0].row;
-        secondColumnChange = secondColumnChange + directionVector[i][0].column;
-        newCoodinate2 = getSymbolAtCoordinates(secondRowChange,firstColumnChange);
-    }
 
-    checkArray.push(matchCounter);
-
-    if(Math.max.apply(null,checkArray) === winCondition){
-    win();
-    } else {checkForDraw();}
-}}
+    // var selector = "$('div[row = " + rowClicked + "][column = " + columnClicked + "]')"
+    // console.log(selector);
 
 
 //     console.log('checkFunction running');
@@ -210,14 +246,8 @@ function checkForMatch(rowFromClicked, columnFromClicked, symbolFromClicked){
 //         } else {checkForDraw();}
 // }
 
-///Dan Code
 //Checks if the coordinate exists on the board
-function getSymbolAtCoordinates(x, y){
-    if(x >= jsArray.length || x < 0 || y >= jsArray.length || y<0){
-        return false;
-    }
-    return jsArray[x][y];
-}
+
 
 // Creates new currentTile to be checked for symbol match
 function nextDirection(rowChange, columnChange, currentTile){

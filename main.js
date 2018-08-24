@@ -3,7 +3,7 @@ var winCondition ;
 $(document).ready(startGame);
 
 function startGame(){
-    console.log('StartGame: Im running yo');
+    console.log('Game Started');
     createHTMLBoard(3);
     clickHandler();
     displayCurrentPlayer();
@@ -27,7 +27,8 @@ function reset() {
     var boardSize = 0;
     var vectorX = 0;
     var vectorY = 0;
-
+    currentPlayer = 0;
+    displayCurrentPlayer();
     var boardTile = $(".tile") ;
     // board text clear
     boardTile.text('');
@@ -38,10 +39,9 @@ function reset() {
          $("#value" + i ).data('symbol',null);
     }
     // clear   vectorArray.symbol
-    for( vectorX = 0 ; vectorX < vectorArray.length ; vectorX ++){
-        for( vectorY = 0 ; vectorY < vectorArray.length ; vectorY ++) {
-            console.log(vectorArray[vectorX][vectorY].symbol);
-            vectorArray[vectorX][vectorY].symbol = null;
+    for( vectorX = 0 ; vectorX < jsArray.length ; vectorX ++){
+        for( vectorY = 0 ; vectorY < jsArray.length ; vectorY ++) {
+            jsArray[vectorX][vectorY].symbol = null;
         }
     }
 }
