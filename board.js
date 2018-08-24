@@ -28,6 +28,7 @@ function  createHTMLBoard(boardSize){//boardSize should be maximum at 7 for func
           strElement = null;
       }
       $(".tile").css( {"width" : numWidth +"%" , "height" : numHeight+"%" } );
+      responsiveText();
       setLimitOnWinConditions(boardSize);//limit user choice on win conditions based on the board size
         createjsArray(boardSize);
       winCondition = boardSize;
@@ -263,4 +264,16 @@ function win(){
 
 function storeSymbolToArray(row,column,symbol){
     jsArray[row][column].symbol = symbol;
+}
+
+function  responsiveText() {
+    var tile = $('.tile');
+    var currentfontSize =  tile.css('font-size');
+    var currentWidth = tile.width();
+    var currentHeight = tile.height();
+
+    var constraint = 5 * (currentWidth /100) ;
+    // console.log('responsiveText', constraint)
+    tile.css('font-size', constraint + 'em');
+
 }
