@@ -117,65 +117,120 @@ function createjsArray(boardSize){
     }
     return jsArray;
 }
-var newPosition = {newRow: null, newColumn: null};
+// var newPosition = {newRow: null, newColumn: null};
 var checkArray = [];
-function checkForMatch(rowFromClicked, columnFromClicked, symbolFromClicked) {
-    console.log('checkFunction running');
-    checkArray = [];
-    var lastTile = null;
-    var firstTile = null;
-    var secondTile = null;
-    var originalTile = jsArray[rowFromClicked][columnFromClicked];
-    for (var i = 0; i < directionVector.length; i++){
-        var matchCounter = 1;
-        var direction0 = directionVector[i][0];
-        var direction1 = directionVector[i][1];
 
-        nextDirection(direction0.row, direction0.column,jsArray[rowFromClicked][columnFromClicked]);
-        firstTile = jsArray[newPosition.newRow][newPosition.newColumn];
+function checkForMatch(rowFromClicked, columnFromClicked, symbolFromClicked){
+    var matchCounter = 1;
+    var clickedTile = jsArray[rowFromClicked][columnFromClicked];
 
-        nextDirection(direction1.row, direction1.column,jsArray[rowFromClicked][columnFromClicked]);
-        secondTile = jsArray[newPosition.newRow][newPosition.newColumn];
+    for(var i = 0; i < directionVector.length; i++){
+    var firstRowChange = directionVector[i][0].row + rowFromClicked; //gives the new row
+    var firstColumnChange = directionVector[i][0].column + columnFromClicked; //give the new column
+    var secondRowChange = directionVector[i][1].row + rowFromClicked;
+    var secondColumnChange = directionVector[i][1].column + columnFromClicked;
 
-        console.log('first tile:',firstTile);
-        console.log('first tile row:',firstTile.row);
 
-        lastTile = null;
-        while(firstTile.symbol === symbolFromClicked && firstTile !== lastTile && firstTile !== originalTile){
-            lastTile = firstTile;
-            console.log('First While Loop');
-            matchCounter++;
-            nextDirection(direction0.row, direction0.column,jsArray[newPosition.newRow][newPosition.newColumn]);
-            firstTile = jsArray[newPosition.newRow][newPosition.newColumn];
-        }
+    var newCoodinate1 = getSymbolAtCoordinates(firstRowChange,firstColumnChange);
+    var newCoordinate2 = getSymbolAtCoordinates(secondRowChange,secondColumnChange);
 
-        lastTile = null;
-        while(secondTile.symbol === symbolFromClicked && secondTile !== lastTile && secondTile !== originalTile){
-            lastTile = secondTile;
-            console.log('Second While Loop');
-            matchCounter++;
-            nextDirection(direction1.row, direction1.column,jsArray[newPosition.newRow][newPosition.newColumn]);
-            secondTile = jsArray[newPosition.newRow][newPosition.newColumn];
-        }
-
-        console.log('checkArray:',checkArray);
-        console.log('match counter:',matchCounter);
-        checkArray.push(matchCounter);
-        console.log('checkArray:',checkArray);
+    while(newCoodinate1 === symbolFromClicked){
+        console.log('First While Loop');
+        matchCounter++;
+        firstRowChange = firstRowChange + directionVector[i][0].row;
+        firstColumnChange = firstColumnChange + directionVector[i][0].column;
+        newCoodinate1 = getSymbolAtCoordinates(firstRowChange,firstColumnChange);
     }
-        if(Math.max.apply(null,checkArray) === winCondition){
-        win();
-        } else {checkForDraw();}
+
+    while(newCoodinate2 === symbolFromClicked){
+        console.log('Second While Loop');
+        matchCounter++;
+        secondRowChange = secondRowChange + directionVector[i][0].row;
+        secondColumnChange = secondColumnChange + directionVector[i][0].column;
+        newCoodinate2 = getSymbolAtCoordinates(secondRowChange,firstColumnChange);
+    }
+
+    checkArray.push(matchCounter);
+
+    if(Math.max.apply(null,checkArray) === winCondition){
+    win();
+    } else {checkForDraw();}
+}}
+
+
+//     console.log('checkFunction running');
+//     checkArray = [];
+//     var lastTile = null;
+//     var firstTile = null;
+//     var secondTile = null;
+//     var originalTile = jsArray[rowFromClicked][columnFromClicked];
+//     for (var i = 0; i < directionVector.length; i++){
+//         var matchCounter = 1;
+//         var direction0 = directionVector[i][0];
+//         var direction1 = directionVector[i][1];
+//
+//         nextDirection(direction0.row, direction0.column,jsArray[rowFromClicked][columnFromClicked]);
+//         firstTile = jsArray[newPosition.newRow][newPosition.newColumn];
+//
+//         var possible = nextDirection(direction1.row, direction1.column,jsArray[rowFromClicked][columnFromClicked]);
+//         if(possible===false){
+//             continue;
+//         }
+//         secondTile = jsArray[newPosition.newRow][newPosition.newColumn];
+//
+//         console.log('first tile:',firstTile);
+//         console.log('first tile row:',firstTile.row);
+//
+//         lastTile = null;
+//         while(firstTile.symbol === symbolFromClicked && firstTile !== lastTile && firstTile !== originalTile){
+//             lastTile = firstTile;
+//             console.log('First While Loop');
+//             matchCounter++;
+//             nextDirection(direction0.row, direction0.column,jsArray[newPosition.newRow][newPosition.newColumn]);
+//             firstTile = jsArray[newPosition.newRow][newPosition.newColumn];
+//         }
+//
+//         lastTile = null;
+//        // while( getSymbolAtCoordinates(direction0.col+1, direction0.col+1) === getSymbolAtCoordinates(direction0.col, direction0.col))
+//         while(secondTile.symbol === symbolFromClicked && secondTile !== lastTile && secondTile !== originalTile){
+//             lastTile = secondTile;
+//             console.log('Second While Loop');
+//             matchCounter++;
+//             nextDirection(direction1.row, direction1.column,jsArray[newPosition.newRow][newPosition.newColumn]);
+//             secondTile = jsArray[newPosition.newRow][newPosition.newColumn];
+//         }
+//
+//         console.log('checkArray:',checkArray);
+//         console.log('match counter:',matchCounter);
+//         checkArray.push(matchCounter);
+//         console.log('checkArray:',checkArray);
+//     }
+//         if(Math.max.apply(null,checkArray) === winCondition){
+//         win();
+//         } else {checkForDraw();}
+// }
+
+///Dan Code
+//Checks if the coordinate exists on the board
+function getSymbolAtCoordinates(x, y){
+    if(x >= jsArray.length || x < 0 || y >= jsArray.length || y<0){
+        return false;
+    }
+    return jsArray[x][y];
 }
 
-//Creates new currentTile to be checked for symbol match
+// Creates new currentTile to be checked for symbol match
 function nextDirection(rowChange, columnChange, currentTile){
-
-        if(parseInt(currentTile.row + rowChange) >= 0){
+        var nextRow = parseInt(currentTile.row + rowChange);
+        var nextCol = parseInt(currentTile.column + columnChange);
+        if(nextRow >= jsArray.length || nextCol >= jsArray.length || nextRow < 0 || nextCol < 0){
+            return false;
+        }
+        if(nextRow >= 0){
             newPosition.newRow = parseInt(currentTile.row + rowChange);
         } else {newPosition.newRow = currentTile.row;}
 
-        if(parseInt(currentTile.column + columnChange) >= 0){
+        if(nextCol >= 0){
             newPosition.newColumn = parseInt(currentTile.column + columnChange);
         } else {newPosition.newColumn = currentTile.column;}
         return newPosition;
