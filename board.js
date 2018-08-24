@@ -73,26 +73,24 @@ function setLimitOnWinConditions(boardSize){
 
 var currentData = [];//might not need
 function getClickData(){
-    currentData = [];
-    console.log('im running');
-    var audio = new Audio('sound.wav');
-    audio.play();
-    var currentTileClick = $(event.currentTarget);
     var currentSymbol = $(event.currentTarget).text();
-
     if(currentSymbol!==""){
         return;
     }
+    currentData = [];
+    var audio = new Audio('sound.wav');
+    audio.play();
+    var currentTileClick = $(event.currentTarget);
+    var symbol = players[currentPlayer].symbol;//check this
+    $(event.currentTarget).text(symbol);
     var data = currentTileClick.data();
     console.log(data);
     var row = data.row;
     var column = data.column;
-    var symbol = players[currentPlayer].symbol;//check this
     currentData.push(row,column,symbol);
-    $(event.currentTarget).text(symbol);
     storeSymbolToArray(row,column,symbol);
     $(event.currentTarget).data('symbol',symbol);
-    checkForMatch(row,column,symbol);
+    // checkForMatch(row,column,symbol);
     changePlayer();
     return currentData;
 }
