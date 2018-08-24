@@ -20,15 +20,11 @@ function changePlayer(){
 }
 
 function displayCurrentPlayer(){
-  $('#player1').removeClass('currentPlayer');
-  $('#player2').removeClass('currentPlayer');
-  $('#player1').removeClass('otherPlayer');
-  $('#player2').removeClass('otherPlayer');
+  $('.player1').removeClass('currentPlayer');
+  $('.player2').removeClass('currentPlayer');
   if(currentPlayer===0){
-    $('#player1').addClass('currentPlayer');
-    $('#player2').addClass('otherPlayer');
+    $('.player1').addClass('currentPlayer');
   } else{
-    $('#player2').addClass('currentPlayer');
-    $('#player1').addClass('otherPlayer');
+    $('.player2').addClass('currentPlayer');
   }
 }
