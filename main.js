@@ -3,7 +3,6 @@ var winCondition ;
 $(document).ready(startGame);
 
 function startGame(){
-    console.log('StartGame: Im running yo');
     createHTMLBoard(3);
     clickHandler();
     displayCurrentPlayer();
