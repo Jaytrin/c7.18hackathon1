@@ -269,7 +269,6 @@ function  responsiveText() {
     var currentfontSize =  tile.css('font-size');
     var currentWidth = tile.width();
     var currentHeight = tile.height();
-
     var constraint = 5 * (currentWidth /100) ;
     // console.log('responsiveText', constraint)
     tile.css('font-size', constraint + 'em');
